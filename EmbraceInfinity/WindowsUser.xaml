@@ -40,7 +40,7 @@
                     <Button x:Name="ButtonFechar" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Padding="0" Click="ButtonFeacher_Click">
                         <materialDesign:PackIcon Kind="Power"/>
                     </Button>
-                </StackPanel>
+                </StackPanel >
             </Grid>
         </StackPanel>
 
