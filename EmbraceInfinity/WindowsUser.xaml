@@ -45,7 +45,7 @@
         </StackPanel>
 
         <Grid  Margin="250 50 0 0">
-            <Grid x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid  x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
             <materialDesign:TransitioningContent x:Name="TransitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
