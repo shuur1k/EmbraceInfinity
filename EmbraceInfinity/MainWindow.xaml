@@ -16,7 +16,6 @@
                     <StackPanel>
                         <Label Name="LabelAnswer" Height="20"  FontSize="14" Padding="0" Foreground="#FF9E4242" HorizontalAlignment="Center" />
                         <Button Margin="80 20 80 10" Content="Log in" Click="LogInClick" />
-                        <Button Margin="80 10 80 10" Content="Sign Up"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
