@@ -72,12 +72,16 @@ namespace EmbraceInfinity
             else LabelAnswer.Content = "Неправильно введёт логин или пароль";
         }
 
-       
+       /// <summary>
+       /// Обработчик события нажатия на кнопку Sing Up
+       /// При нажатии на кнопку открывается новое окно с формой регистраци
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void SignUpClick(object sender, RoutedEventArgs e)
         {
-
-            //PageSignIn SignUp = new PageSignIn();
-            //SignUp.Show();
+            WindowSignUp SignUp = new WindowSignUp();
+            SignUp.Show();
 
         }
     }
