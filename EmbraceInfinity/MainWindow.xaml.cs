@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 
+
 namespace EmbraceInfinity
 {
     /// <summary>
@@ -60,6 +61,15 @@ namespace EmbraceInfinity
                 LabelAnswer.Content = "Введите логин или пароль";
             }
             else LabelAnswer.Content = "Неправильно введёт логин или пароль";
+        }
+
+       
+        private void SignUpClick(object sender, RoutedEventArgs e)
+        {
+            
+            //PageSignIn SignUp = new PageSignIn();
+            //SignUp.Show();
+
         }
     }
 }

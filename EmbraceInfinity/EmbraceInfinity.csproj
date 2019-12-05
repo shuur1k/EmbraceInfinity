@@ -94,6 +94,9 @@
     <Compile Include="UserControlInicio.xaml.xaml.cs">
       <DependentUpon>UserControlInicio.xaml.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowSignUp.xaml.cs">
+      <DependentUpon>WindowSignUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsUser.xaml.cs">
       <DependentUpon>WindowsUser.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControlInicio.xaml.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowSignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
