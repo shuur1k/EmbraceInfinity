@@ -39,20 +39,20 @@ namespace EmbraceInfinity
             int index = ListViewMenu.SelectedIndex;
             MoveCoursorMenu(index);
 
-            switch (index)
-            {
-                case 0:
-                    GridPrincipal.Children.Clear();
-                    GridPrincipal.Children.Add(new UserControlInicio());
-                    break;
-                //case 1:
-                //    GridPrincipal.Children.Clear();
-                //    GridPrincipal.Children.Add(new UserControlClients());
-                //    break;
-                default:
-                    break;
+            //switch (index)
+            //{
+            //    case 0:
+            //        GridPrincipal.Children.Clear();
+            //        GridPrincipal.Children.Add(new UserControlInicio());
+            //        break;
+            //    //case 1:
+            //    //    GridPrincipal.Children.Clear();
+            //    //    GridPrincipal.Children.Add(new UserControlClients());
+            //    //    break;
+            //    default:
+            //        break;
 
-            }
+            //}
         }
         private void MoveCoursorMenu(int index)
         {

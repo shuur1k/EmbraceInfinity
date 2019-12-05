@@ -22,15 +22,25 @@ namespace EmbraceInfinity
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Самое начало
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик сабытия нажатия на кнопку LogIn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LogInClick(object sender, RoutedEventArgs e)
         {
+            //Шаблон валидация пароля
             Regex regex = new Regex("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}");
 
+            //Проверка валидации пароля
             if (regex.IsMatch(TextBoxPassword.Password))
             {
                 EMTYEntities db = new EMTYEntities();
@@ -41,7 +51,6 @@ namespace EmbraceInfinity
                     }
                     else
                     {
-                        LabelAnswer.Content = "Пользователь найден";
                         WindowControl windowControl = new WindowControl();
                         WindowUser windowUser = new WindowUser();
                         if (user.Login == "Admin")
@@ -66,7 +75,7 @@ namespace EmbraceInfinity
        
         private void SignUpClick(object sender, RoutedEventArgs e)
         {
-            
+
             //PageSignIn SignUp = new PageSignIn();
             //SignUp.Show();
 
