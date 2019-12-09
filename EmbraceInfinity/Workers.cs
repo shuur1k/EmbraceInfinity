@@ -14,13 +14,23 @@ namespace EmbraceInfinity
     
     public partial class Workers
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Workers()
+        {
+            this.Order = new HashSet<Order>();
+        }
+    
         public int ID { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string Patronumic { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
-        public Nullable<System.DateTime> BirstDate { get; set; }
+        public Nullable<System.DateTime> BirthDate { get; set; }
         public Nullable<int> TitleID { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
+        public virtual Title Title { get; set; }
     }
 }

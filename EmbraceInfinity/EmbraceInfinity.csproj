@@ -70,6 +70,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Customer.cs">
+      <DependentUpon>TitleEmployee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>TitleEmployee.tt</DependentUpon>
+    </Compile>
     <Compile Include="Title.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
     </Compile>
@@ -163,19 +169,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="TitleEmployee.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TitleEmployee.Context.cs</LastGenOutput>
       <DependentUpon>TitleEmployee.edmx</DependentUpon>
+      <LastGenOutput>TitleEmployee.Context.cs</LastGenOutput>
     </Content>
     <Content Include="TitleEmployee.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TitleEmployee.edmx</DependentUpon>
       <LastGenOutput>TitleEmployee.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

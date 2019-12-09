@@ -25,8 +25,10 @@ namespace EmbraceInfinity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Title> Title { get; set; }
-        public virtual DbSet<Workers> Workers { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Workers> Workers { get; set; }
     }
 }

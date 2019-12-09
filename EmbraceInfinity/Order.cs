@@ -12,12 +12,15 @@ namespace EmbraceInfinity
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Order
     {
-        public int ID { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string Location { get; set; }
+        public int ID_Order { get; set; }
+        public string Title_Order { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> Executor { get; set; }
+        public string Customer { get; set; }
+    
+        public virtual Customer Customer1 { get; set; }
+        public virtual Workers Workers { get; set; }
     }
 }

@@ -4,10 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="20da9fcaab734fa1bebea0f8dda18b15" Name="Diagram1">
-        <EntityTypeShape EntityType="EMTYModel.Title" Width="1.5" PointX="0.5" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMTYModel.Workers" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMTYModel.User" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="eb248d2ef8ab4ca89a1cf64ce92fa842" Name="Diagram1">
+        <EntityTypeShape EntityType="EMTYModel.Customer" Width="1.5" PointX="7.375" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMTYModel.Order" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMTYModel.Title" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMTYModel.User" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMTYModel.Workers" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="EMTYModel.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="EMTYModel.FK_Order_Workers" ManuallyRouted="false" />
+        <AssociationConnector Association="EMTYModel.FK_Workers_Title" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

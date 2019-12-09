@@ -14,7 +14,16 @@ namespace EmbraceInfinity
     
     public partial class Title
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Title()
+        {
+            this.Workers = new HashSet<Workers>();
+        }
+    
         public int ID { get; set; }
         public string TitleID { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Workers> Workers { get; set; }
     }
 }
