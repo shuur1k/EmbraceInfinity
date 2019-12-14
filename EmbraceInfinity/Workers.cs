@@ -26,8 +26,9 @@ namespace EmbraceInfinity
         public string Patronumic { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
-        public Nullable<System.DateTime> BirthDate { get; set; }
-        public Nullable<int> TitleID { get; set; }
+        public System.DateTime BirthDate { get; set; }
+        public int TitleID { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

@@ -28,61 +28,51 @@ namespace EmbraceInfinity
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
-        /// <summary>
-        /// Обработчик сабытия нажатия на кнопку LogIn
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void LogInClick(object sender, RoutedEventArgs e)
         {
-            //Шаблон валидация пароля
-            Regex regex = new Regex("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}");
+            WindowControl windowControl = new WindowControl();
+            WindowUser windowUser = new WindowUser();
 
-            //Проверка валидации пароля
-            if (regex.IsMatch(TextBoxPassword.Password))
+            EMTYEntities db = new EMTYEntities();
+            var worker = db.Workers.AsNoTracking().FirstOrDefault(u=>u.Email==TextBoxLigin.Text && u.Password==TextBoxPassword.Password);
+            var user = db.User.AsNoTracking().FirstOrDefault(u => u.Login == TextBoxLigin.Text && u.Password == TextBoxPassword.Password);
+            if (user == null)
             {
-                EMTYEntities db = new EMTYEntities();
-                var user = db.User.AsNoTracking().FirstOrDefault(u => u.Login == TextBoxLigin.Text && u.Password == TextBoxPassword.Password);
-                    if (user == null)
-                    {
-                        LabelAnswer.Content = "Пользователь не найден";
-                    }
-                    else
-                    {
-                        WindowControl windowControl = new WindowControl();
-                        WindowUser windowUser = new WindowUser();
-                        if (user.Login == "Admin")
-                        {
-                            Hide();
-                            windowControl.Show();
-                        }
-                        else
-                        {
-                            Hide();
-                            windowUser.Show();
-                        }
-                    }
+                LabelAnswer.Content = "Пользователь не найден";
             }
+
             else if (string.IsNullOrEmpty(TextBoxLigin.Text) || string.IsNullOrEmpty(TextBoxPassword.Password))
             {
                 LabelAnswer.Content = "Введите логин или пароль";
             }
+           
+
+            else if (TextBoxLigin.Text== user.Login)
+            {
+                    var myWindow = MainWindow.GetWindow(this);
+                    myWindow.Close();
+                    windowUser.Show();
+            }
+
+            else if (TextBoxLigin.Text==worker.Email&&worker.TitleID==2)
+            {
+
+            }
+
             else LabelAnswer.Content = "Неправильно введёт логин или пароль";
+           
         }
 
-       /// <summary>
-       /// Обработчик события нажатия на кнопку Sing Up
-       /// При нажатии на кнопку открывается новое окно с формой регистраци
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
         private void SignUpClick(object sender, RoutedEventArgs e)
         {
-            WindowSignUp SignUp = new WindowSignUp();
-            SignUp.Show();
-
+            
+            SignUpWindow Click = new SignUpWindow();
+            Click.Show();
+            var myWindow = MainWindow.GetWindow(this);
+                        myWindow.Close();
         }
     }
 }

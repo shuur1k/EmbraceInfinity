@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище EMTYModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище EMTYModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="ID_Customer" />
@@ -37,33 +37,35 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Login" Type="nvarchar(max)" />
-          <Property Name="Password" Type="nvarchar(max)" />
-          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="TotalID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Workers">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Surname" Type="text" />
-          <Property Name="Name" Type="text" />
-          <Property Name="Patronumic" Type="text" />
-          <Property Name="Telephone" Type="text" />
-          <Property Name="Email" Type="text" />
-          <Property Name="BirthDate" Type="date" />
-          <Property Name="TitleID" Type="int" />
+          <Property Name="Surname" Type="text" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+          <Property Name="Patronumic" Type="text" Nullable="false" />
+          <Property Name="Telephone" Type="text" Nullable="false" />
+          <Property Name="Email" Type="text" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="TitleID" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Order_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+        <Association Name="FK_Customer_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="ID_Customer" />
-            </Principal>
-            <Dependent Role="Order">
+            <Principal Role="Order">
               <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="Order" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -80,7 +82,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Workers_Title">
-          <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+          <End Role="Title" Type="Self.Title" Multiplicity="1" />
           <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Title">
@@ -97,9 +99,9 @@
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customer" />
+          <AssociationSet Name="FK_Customer_Order" Association="Self.FK_Customer_Order">
             <End Role="Order" EntitySet="Order" />
+            <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Workers" Association="Self.FK_Order_Workers">
             <End Role="Workers" EntitySet="Workers" />
@@ -110,8 +112,7 @@
             <End Role="Workers" EntitySet="Workers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EMTYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -124,7 +125,7 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Order" Type="Int32" />
-          <NavigationProperty Name="Order1" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Order1" Relationship="Self.FK_Customer_Order" FromRole="Customer" ToRole="Order" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -135,7 +136,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Executor" Type="Int32" />
           <Property Name="Customer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer1" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK_Customer_Order" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="Workers" Relationship="Self.FK_Order_Workers" FromRole="Order" ToRole="Workers" />
         </EntityType>
         <EntityType Name="Title">
@@ -151,35 +152,37 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Workers">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Patronumic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="TitleID" Type="Int32" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronumic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TitleID" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Workers" FromRole="Workers" ToRole="Order" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Workers_Title" FromRole="Workers" ToRole="Title" />
         </EntityType>
-        <Association Name="FK_Order_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+        <Association Name="FK_Customer_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="ID_Customer" />
-            </Principal>
-            <Dependent Role="Order">
+            <Principal Role="Order">
               <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="Order" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -196,7 +199,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Workers_Title">
-          <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+          <End Role="Title" Type="Self.Title" Multiplicity="1" />
           <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Title">
@@ -213,9 +216,9 @@
           <EntitySet Name="Title" EntityType="Self.Title" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Workers" EntityType="Self.Workers" />
-          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customer" />
+          <AssociationSet Name="FK_Customer_Order" Association="Self.FK_Customer_Order">
             <End Role="Order" EntitySet="Order" />
+            <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Workers" Association="Self.FK_Order_Workers">
             <End Role="Workers" EntitySet="Workers" />
@@ -265,6 +268,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="EMTYModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="TotalID" ColumnName="TotalID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -284,6 +288,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -19,11 +19,19 @@ namespace EmbraceInfinity
     /// </summary>
     public partial class WindowControl : Window
     {
+        EMTYEntities dataEntities = new EMTYEntities();
         public WindowControl()
         {
            InitializeComponent();
         }
 
+        public void LoadingWindow(object sender, RoutedEventArgs e)
+        {
+            var worker = dataEntities.Workers;
+            var query = from Workers in worker
+                        select Workers;
+            DataGridCliesnt.ItemsSource = query.ToList();
+        }
         private void ButtonFeacher_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -34,36 +42,9 @@ namespace EmbraceInfinity
             DragMove();
         }
 
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int index = ListViewMenu.SelectedIndex;
-            MoveCoursorMenu(index);
+      
+       
 
-            //switch (index)
-            //{
-            //    case 0:
-            //        GridPrincipal.Children.Clear();
-            //        GridPrincipal.Children.Add(new UserControlInicio());
-            //        break;
-            //    //case 1:
-            //    //    GridPrincipal.Children.Clear();
-            //    //    GridPrincipal.Children.Add(new UserControlClients());
-            //    //    break;
-            //    default:
-            //        break;
-
-            //}
-        }
-        private void MoveCoursorMenu(int index)
-        {
-            TransitioningContentSlide.OnApplyTemplate();
-            GridCursor.Margin = new Thickness(0, (70 + (60 * index)), 0, 0);
-
-        }
-
-        private void EnterClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
+      
     }
 }

@@ -73,8 +73,12 @@
     <Compile Include="Customer.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ListTitle.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Title.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
@@ -97,18 +101,22 @@
     <Compile Include="User.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
     </Compile>
-    <Compile Include="WindowSignUp.xaml.cs">
-      <DependentUpon>WindowSignUp.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WindowsUser.xaml.cs">
       <DependentUpon>WindowsUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowControl.xaml.cs">
       <DependentUpon>WindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowWorkers.xaml.cs">
+      <DependentUpon>WindowWorkers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Workers.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
     </Compile>
+    <Page Include="DictionaryStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -121,7 +129,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WindowSignUp.xaml">
+    <Page Include="SignUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,6 +138,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="WindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowWorkers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
