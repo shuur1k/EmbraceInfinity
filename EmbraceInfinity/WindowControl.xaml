@@ -14,7 +14,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="450" Width="800" WindowStyle="None"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize" >
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="LoadingWindow" >
 
     <Window.Resources>
         <core:ListTitle x:Key="listTitle" />

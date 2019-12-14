@@ -36,12 +36,18 @@ namespace EmbraceInfinity
             {
                 LabelAnswer.Content = "Лёгкий пароль, Пример:Fg78Td62";
             }
+
             else if (regexEmail.IsMatch(TextBoxEmailReg.Text))
             {
-                LabelAnswer.Content = "Не паравильно введён пароль";
+                LabelAnswer.Content = "Не паравильно введена почта";
             }
 
-           else if (TextBoxPasswordReg.Password == TextBoxConfirmPassword.Password)
+            else if (TextBoxPasswordReg.Password != TextBoxConfirmPassword.Password)
+            {
+                LabelAnswer.Content = "Повторный пароль не совпадает";
+            }
+
+            else if (TextBoxPasswordReg.Password == TextBoxConfirmPassword.Password)
             {
                 User user = new User();
                 user.Login = TextBoxLiginReg.Text;
@@ -54,15 +60,12 @@ namespace EmbraceInfinity
                 var query = from User in users
                             select User;
 
-                WindowControl windowControl = new WindowControl();
-                windowControl.Show();
+                WindowUser windowUser = new WindowUser();
+                windowUser.Show();
                 var ThisWindow = SignUpWindow.GetWindow(this);
                 ThisWindow.Close();
             }
-            else if (TextBoxPasswordReg.Password != TextBoxConfirmPassword.Password)
-            {
-                LabelAnswer.Content = "Повторный пароль не совпадает";
-            }
+           
             
         }
 

@@ -35,34 +35,51 @@ namespace EmbraceInfinity
         {
             WindowControl windowControl = new WindowControl();
             WindowUser windowUser = new WindowUser();
+            WindowWorkers windowWorkers = new WindowWorkers();
 
             EMTYEntities db = new EMTYEntities();
             var worker = db.Workers.AsNoTracking().FirstOrDefault(u=>u.Email==TextBoxLigin.Text && u.Password==TextBoxPassword.Password);
             var user = db.User.AsNoTracking().FirstOrDefault(u => u.Login == TextBoxLigin.Text && u.Password == TextBoxPassword.Password);
-            if (user == null)
+            if (user == null&&worker==null)
             {
                 LabelAnswer.Content = "Пользователь не найден";
             }
 
             else if (string.IsNullOrEmpty(TextBoxLigin.Text) || string.IsNullOrEmpty(TextBoxPassword.Password))
             {
-                LabelAnswer.Content = "Введите логин или пароль";
+                LabelAnswer.Content = "Введите логин и пароль";
             }
-           
-
-            else if (TextBoxLigin.Text== user.Login)
+            try
             {
+                if (TextBoxLigin.Text == user.Login)
+                {
                     var myWindow = MainWindow.GetWindow(this);
                     myWindow.Close();
                     windowUser.Show();
+                }
             }
-
-            else if (TextBoxLigin.Text==worker.Email&&worker.TitleID==2)
+            catch
             {
+                if (TextBoxLigin.Text == worker.Email && worker.TitleID == 2)
+                {
+                    var myWindow = MainWindow.GetWindow(this);
+                    myWindow.Close();
+                    windowWorkers.Show();
+                }
 
+                else if (TextBoxLigin.Text == worker.Email && worker.TitleID == 1)
+                {
+                    var myWindow = MainWindow.GetWindow(this);
+                    myWindow.Close();
+                    windowControl.Show();
+                }
+
+                else LabelAnswer.Content = "Неправильно введёт логин или пароль";
             }
+            
+           
 
-            else LabelAnswer.Content = "Неправильно введёт логин или пароль";
+           
            
         }
 

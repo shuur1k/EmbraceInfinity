@@ -36,5 +36,14 @@
                     </StackPanel>
                 </Grid>
             </StackPanel>
-        </Grid>
+        <TabControl Margin="0 50 0 0">
+            <TabItem Header="Заказы">
+                
+            </TabItem>
+
+            <TabItem Header="Репозиторий">
+
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>

@@ -80,6 +80,15 @@
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TitleEmployee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>TitleEmployee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>TitleEmployee.tt</DependentUpon>
+    </Compile>
     <Compile Include="Title.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
     </Compile>

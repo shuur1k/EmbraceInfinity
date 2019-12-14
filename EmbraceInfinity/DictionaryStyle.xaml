@@ -3,10 +3,10 @@
                     xmlns:local="clr-namespace:EmbraceInfinity">
 
     <DataTemplate x:Key="DataTemplate">
-        <TextBlock Text="{Binding BirstDate,  StringFormat={}{0:dd\.}{0:MM\.}{0:yyyy}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding BirthDate,  StringFormat={}{0:dd\.}{0:MM\.}{0:yyyy}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </DataTemplate>
     <DataTemplate x:Key="EditingDataTemplate">
-        <DatePicker SelectedDate="{Binding BirstDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <DatePicker SelectedDate="{Binding BirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </DataTemplate>
 
 </ResourceDictionary>

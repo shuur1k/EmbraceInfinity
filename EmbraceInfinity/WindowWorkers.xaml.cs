@@ -23,5 +23,15 @@ namespace EmbraceInfinity
         {
             InitializeComponent();
         }
+
+        private void ButtonFeacher_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }
