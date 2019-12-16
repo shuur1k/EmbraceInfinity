@@ -13,7 +13,7 @@
         <AssociationConnector Association="EMTYModel.FK_Customer_Order" ManuallyRouted="false" />
         <AssociationConnector Association="EMTYModel.FK_Order_Workers" ManuallyRouted="false" />
         <AssociationConnector Association="EMTYModel.FK_Workers_Title" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="EMTYModel.sysdiagrams" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="EMTYModel.sysdiagrams" Width="1.5" PointX="4.25" PointY="4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

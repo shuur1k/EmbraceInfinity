@@ -53,20 +53,44 @@
         <Grid  Margin="0 50 0 0">
             <TabControl>
                 <TabItem Header="Workers">
-                    <DataGrid Name="DataGridCliesnt" ItemsSource="{Binding}"  VerticalAlignment="Top" AutoGenerateColumns="False" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
-                            <DataGridTextColumn Header="Имя" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
-                            <DataGridTextColumn Header="Отчество" Binding="{Binding Patronumic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100" />
-                            <DataGridTemplateColumn Header="Дата рождения" CellTemplate="{StaticResource DataTemplate}" CellEditingTemplate="{StaticResource EditingDataTemplate}"/>
-                            <DataGridComboBoxColumn Header="Должность" ItemsSource="{Binding Source={StaticResource listTitle}}" DisplayMemberPath="TitleID"    
+                    <StackPanel>
+
+                        <ToolBar x:Name="ToolBar1" Height="40" Background="Transparent" Padding="0" VerticalAlignment="Top">
+                            <Button x:Name="Undo" ToolTip="Отменить редактирование/создание"  Padding="5" >
+                                <materialDesign:PackIcon Kind="Undo" VerticalAlignment="Center" />
+                            </Button>
+                            <Button x:Name="add" ToolTip="Добавить"  Click="AddClick" Padding="5">
+                                <materialDesign:PackIcon Kind="Add" VerticalAlignment="Center"/>
+                            </Button>
+                            <Button x:Name="edit" ToolTip="Редактировать"  Click="EditClick" Padding="5">
+                                <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center"/>
+                            </Button>
+                            <Button x:Name="serch" ToolTip="Поиск"  Padding="5" Click="Serch_Click" >
+                                <materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" />
+                            </Button>
+                            <Button x:Name="save" ToolTip="Сохранить"  Click="SaveClick" Padding="5">
+                                <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center"/>
+                            </Button>
+                            <Button x:Name="remove" ToolTip="Удалить" Click="DeleteClick" Padding="5">
+                                <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center"/>
+                            </Button>
+                        </ToolBar>
+
+                        <DataGrid Name="DataGridCliesnt" ItemsSource="{Binding}"  VerticalAlignment="Top" AutoGenerateColumns="False" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                                <DataGridTextColumn Header="Имя" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronumic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100" />
+                                <DataGridTemplateColumn Header="Дата рождения" CellTemplate="{StaticResource DataTemplate}" CellEditingTemplate="{StaticResource EditingDataTemplate}"/>
+                                <DataGridComboBoxColumn Header="Должность" ItemsSource="{Binding Source={StaticResource listTitle}}" DisplayMemberPath="TitleID"    
                              SelectedValueBinding="{Binding Path=TitleID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="ID"/>
-                            <DataGridTextColumn Header="Телефон" Binding="{Binding Telephone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
-                            <DataGridTextColumn Header="Электронная почта" Binding="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MinWidth="100"/>
+                                <DataGridTextColumn Header="Телефон" Binding="{Binding Telephone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                                <DataGridTextColumn Header="Электронная почта" Binding="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MinWidth="100"/>
 
 
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
                 </TabItem>
             </TabControl>
         </Grid>
