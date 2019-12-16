@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,9 @@ namespace EmbraceInfinity
         EMTYEntities dataEntities = new EMTYEntities();//переменная через которую обращаюсь к базе данных
         ObservableCollection<Workers> ListEmployee = new ObservableCollection<Workers>();//переменная коллекции которая хранит содержимое таблицы Workers
 
+        public object Response { get; private set; }
+
+
         /// <summary>
         /// Начальный метод работы программы
         /// </summary>
@@ -30,12 +34,21 @@ namespace EmbraceInfinity
         {
             InitializeComponent();
 
+            //Начальное значение доступа к кнопкам на вкладке работники
             save.IsEnabled = false;
             edit.IsEnabled = true;
             Undo.IsEnabled = false;
             serch.IsEnabled = true;
             add.IsEnabled = true;
             remove.IsEnabled = true;
+
+            saveUser.IsEnabled = false;
+            editUser.IsEnabled = true;
+            UndoUser.IsEnabled = false;
+            serchUser.IsEnabled = true;
+            addUser.IsEnabled = true;
+            removeUser.IsEnabled = true;
+
         }
 
         /// <summary>
@@ -46,10 +59,30 @@ namespace EmbraceInfinity
         /// <param name="e"></param>
         public void LoadingWindow(object sender, RoutedEventArgs e)
         {
+            TableWorker(sender, e);
+            TableUsers(sender, e);
+        }
+
+        /// <summary>
+        /// Метод который загружает данные из БД
+        /// в таблицу Работников
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void TableWorker(object sender, RoutedEventArgs e)
+        {
             var worker = dataEntities.Workers;
             var query = from Workers in worker
                         select Workers;
             DataGridCliesnt.ItemsSource = query.ToList();
+        }
+
+        public void TableUsers(object sender, RoutedEventArgs e)
+        {
+            var user = dataEntities.User;
+            var query = from User in user
+                        select User;
+            DataGridUser.ItemsSource = query.ToList();
         }
 
         /// <summary>
@@ -97,34 +130,15 @@ namespace EmbraceInfinity
                 employee.BirthDate = DateTime.Parse("2001-12-12");
                 employee.Email = "не задано";
                 employee.TitleID = 0;
+                employee.Password = "";
                 dataEntities.Workers.Add(employee);
                 dataEntities.SaveChanges();
                 DataGridCliesnt.BeginEdit();
-                var worker = dataEntities.Workers;
-                var query =
-                    from Workers in worker
-                    select Workers;
-                DataGridCliesnt.ItemsSource = query.ToList();
+                TableWorker(sender, e);
             }
             catch
             {
-                //employee.ID = dataEntities.Workers.Count() + 2;
-                //employee.Surname = "не задано";
-                //employee.Name = "не задано";
-                //employee.Patronumic = "не задано";
-                //employee.Telephone = "0";
-                //employee.BirthDate = DateTime.Parse("2001-12-12");
-                //employee.Email = "не задано";
-                //employee.TitleID = 1;
-                //dataEntities.Workers.Add(employee);
-                //dataEntities.SaveChanges();
-                //DataGridCliesnt.BeginEdit();
-                //var worker = dataEntities.Workers;
-                //var query =
-                //    from Workers in worker
-                //    select Workers;
-                //DataGridCliesnt.ItemsSource = query.ToList();
-                MessageBox.Show("Сначала сохрани изменения", "Предупреждение", MessageBoxButton.OK);
+                MessageBox.Show("Сначала сохраните изменения");
             }
         }
 
@@ -162,7 +176,7 @@ namespace EmbraceInfinity
         /// <summary>
         /// Обработчик события нажатия на кнопку сохранить
         /// сохраняет все вснесённые изменения в базу данных
-        /// и отображает все изменения
+        /// и отображает все изменения о работниках
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -177,11 +191,7 @@ namespace EmbraceInfinity
 
             dataEntities.SaveChanges();
             DataGridCliesnt.IsReadOnly = true;
-            var worker = dataEntities.Workers;
-            var query =
-                from Workers in worker
-                select Workers;
-            DataGridCliesnt.ItemsSource = query.ToList();
+            TableWorker(sender, e);
         }
 
         /// <summary>
@@ -202,11 +212,108 @@ namespace EmbraceInfinity
                     DataGridCliesnt.SelectedIndex = DataGridCliesnt.SelectedIndex == 0 ? 1 : DataGridCliesnt.SelectedIndex - 1;
                     ListEmployee.Remove(emp);
                     dataEntities.SaveChanges();
-                    var worker = dataEntities.Workers;
-                    var query =
-                        from Workers in worker
-                        select Workers;
-                    DataGridCliesnt.ItemsSource = query.ToList();
+                    TableWorker(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Выберите строку для удаления");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обработчик события нажатия на кнопку добавить
+        /// которая позволяет добавить пользователя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddClickUser(object sender, RoutedEventArgs e)
+        {
+            saveUser.IsEnabled = true;
+            editUser.IsEnabled = false;
+            UndoUser.IsEnabled = true;
+            serchUser.IsEnabled = false;
+            addUser.IsEnabled = false;
+            removeUser.IsEnabled = false;
+            User employee = new User();
+            try
+            {
+                employee.ID = dataEntities.User.Count() + 1;
+                employee.Login = "не задано";
+                employee.Password = "не задано";
+                employee.Email = "не задано";
+                employee.Location = "";
+                employee.TotalID = 3;
+                dataEntities.User.Add(employee);
+                dataEntities.SaveChanges();
+                DataGridUser.BeginEdit();
+                TableUsers(sender, e);
+            }
+            catch
+            {
+                MessageBox.Show("Сначала сохраните изменения");
+            }
+        }
+
+        /// <summary>
+        /// Обработчик события нажатия на кнопку редактировать
+        /// позволяющаая редактировать данные о позволяет
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditClickUser(object sender, RoutedEventArgs e)
+        {
+            saveUser.IsEnabled = true;
+            editUser.IsEnabled = false;
+            UndoUser.IsEnabled = true;
+            serchUser.IsEnabled = false;
+            addUser.IsEnabled = false;
+            removeUser.IsEnabled = false;
+
+            DataGridUser.IsReadOnly = false;
+            DataGridUser.BeginEdit();
+        }
+
+        /// <summary>
+        /// Обработчик события нажатия на кнопку сохранить
+        /// сохраняет все вснесённые изменения в базу данных
+        /// и отображает все изменения о пользователях
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveClickUser(object sender, RoutedEventArgs e)
+        {
+            saveUser.IsEnabled = false;
+            editUser.IsEnabled = true;
+            UndoUser.IsEnabled = false;
+            serchUser.IsEnabled = true;
+            addUser.IsEnabled = true;
+            removeUser.IsEnabled = true;
+
+            dataEntities.SaveChanges();
+            DataGridUser.IsReadOnly = true;
+            TableUsers(sender, e);
+        }
+
+        /// <summary>
+        /// Обработчик события нажатия на кнопку удалить
+        /// который удаляет выбранного пользователя из базы данных
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteClickUser(object sender, RoutedEventArgs e)
+        {
+            User emp = DataGridUser.SelectedItem as User;
+            if (emp != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить сотрудника?", "Предупреждение", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    dataEntities.User.Remove(emp);
+                    DataGridUser.SelectedIndex = DataGridUser.SelectedIndex == 0 ? 1 : DataGridUser.SelectedIndex - 1;
+                   // ListEmployee.Remove(emp);
+                    dataEntities.SaveChanges();
+                    TableUsers(sender, e);
                 }
                 else
                 {

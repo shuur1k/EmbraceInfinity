@@ -19,7 +19,7 @@
     <Window.Resources>
         <core:ListTitle x:Key="listTitle" />
     </Window.Resources>
-    
+
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
         <StackPanel VerticalAlignment="Top" >
             <Grid Background="#FF0069C0" Height="10"/>
@@ -54,8 +54,7 @@
             <TabControl>
                 <TabItem Header="Workers">
                     <StackPanel>
-
-                        <ToolBar x:Name="ToolBar1" Height="40" Background="Transparent" Padding="0" VerticalAlignment="Top">
+                        <ToolBar  Height="40" Background="Transparent" Padding="0" VerticalAlignment="Top">
                             <Button x:Name="Undo" ToolTip="Отменить редактирование/создание"  Padding="5" >
                                 <materialDesign:PackIcon Kind="Undo" VerticalAlignment="Center" />
                             </Button>
@@ -86,10 +85,47 @@
                              SelectedValueBinding="{Binding Path=TitleID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="ID"/>
                                 <DataGridTextColumn Header="Телефон" Binding="{Binding Telephone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
                                 <DataGridTextColumn Header="Электронная почта" Binding="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MinWidth="100"/>
+                                <DataGridTextColumn Header="Пароль" Binding="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" MinWidth="100"/>
 
 
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Label Name="Err" />
+                    </StackPanel>
+                </TabItem>
+
+                <TabItem Header="Пользователи">
+                    <StackPanel>
+                        <ToolBar  Height="40" Background="Transparent" Padding="0" VerticalAlignment="Top">
+                            <Button x:Name="UndoUser" ToolTip="Отменить редактирование/создание"  Padding="5" >
+                                <materialDesign:PackIcon Kind="Undo" VerticalAlignment="Center" />
+                            </Button>
+                            <Button x:Name="addUser" ToolTip="Добавить"  Click="AddClickUser" Padding="5">
+                                <materialDesign:PackIcon Kind="Add" VerticalAlignment="Center"/>
+                            </Button>
+                            <Button x:Name="editUser" ToolTip="Редактировать"  Click="EditClickUser" Padding="5">
+                                <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center"/>
+                            </Button>
+                            <Button x:Name="serchUser" ToolTip="Поиск"  Padding="5" >
+                                <materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" />
+                            </Button>
+                            <Button x:Name="saveUser" ToolTip="Сохранить"  Click="SaveClickUser" Padding="5">
+                                <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center"/>
+                            </Button>
+                            <Button x:Name="removeUser" ToolTip="Удалить" Click="DeleteClickUser" Padding="5">
+                                <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center"/>
+                            </Button>
+                        </ToolBar>
+
+                        <DataGrid Name="DataGridUser" ItemsSource="{Binding}"  VerticalAlignment="Top" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Login" Binding="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                                <DataGridTextColumn Header="Password" Binding="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                                <DataGridTextColumn Header="Email" Binding="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                                <DataGridTextColumn Header="Location" Binding="{Binding Location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
                     </StackPanel>
                 </TabItem>
             </TabControl>

@@ -60,21 +60,26 @@ namespace EmbraceInfinity
             }
             catch
             {
-                if (TextBoxLigin.Text == worker.Email && worker.TitleID == 2)
+                try
                 {
-                    var myWindow = MainWindow.GetWindow(this);
-                    myWindow.Close();
-                    windowWorkers.Show();
-                }
+                    if (TextBoxLigin.Text == worker.Email && worker.TitleID == 2)
+                    {
+                        var myWindow = MainWindow.GetWindow(this);
+                        myWindow.Close();
+                        windowWorkers.Show();
+                    }
 
-                else if (TextBoxLigin.Text == worker.Email && worker.TitleID == 1)
+                    else if (TextBoxLigin.Text == worker.Email && worker.TitleID == 1)
+                    {
+                        var myWindow = MainWindow.GetWindow(this);
+                        myWindow.Close();
+                        windowControl.Show();
+                    }
+                }
+                catch
                 {
-                    var myWindow = MainWindow.GetWindow(this);
-                    myWindow.Close();
-                    windowControl.Show();
+                    LabelAnswer.Content = "Неправильно введёт логин или пароль";
                 }
-
-                else LabelAnswer.Content = "Неправильно введёт логин или пароль";
             }
             
            
