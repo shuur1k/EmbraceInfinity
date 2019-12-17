@@ -25,5 +25,6 @@ namespace EmbraceInfinity
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Workers> Workers { get; set; }
+        public virtual Workers Workers1 { get; set; }
     }
 }

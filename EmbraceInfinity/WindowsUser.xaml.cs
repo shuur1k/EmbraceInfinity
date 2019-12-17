@@ -34,31 +34,10 @@ namespace EmbraceInfinity
             DragMove();
         }
 
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ClickAccount(object sender, RoutedEventArgs e)
         {
-            int index = ListViewMenu.SelectedIndex;
-            MoveCoursorMenu(index);
-
-            //switch (index)
-            //{
-            //    case 0:
-            //        GridPrincipal.Children.Clear();
-            //        GridPrincipal.Children.Add(new UserControlInicio());
-            //        break;
-            //    //case 1:
-            //    //    GridPrincipal.Children.Clear();
-            //    //    GridPrincipal.Children.Add(new UserControlClients());
-            //    //    break;
-            //    default:
-            //        break;
-
-            //}
-        }
-        private void MoveCoursorMenu(int index)
-        {
-            TransitioningContentSlide.OnApplyTemplate();
-            GridCursor.Margin = new Thickness(0, (70 + (60 * index)), 0, 0);
-
+            WindowAccount Acc = new WindowAccount();
+            Acc.Show();
         }
     }
 }

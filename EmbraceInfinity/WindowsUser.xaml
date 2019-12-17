@@ -18,6 +18,15 @@
         <StackPanel VerticalAlignment="Top" >
             <Grid Background="#FF0069C0" Height="10"/>
             <Grid Margin="5">
+                <StackPanel>
+                    <Button  Background="#FF0069C0" Margin="10" Width="140" Height="30" HorizontalAlignment="Left" Padding="0" BorderBrush="Transparent" Click="ClickAccount">
+                        <StackPanel Orientation="Horizontal" Height="20" Margin="0 0 0 0" Width="135" >
+                            <TextBlock Text="Личный кабинет" Width="110" VerticalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="Account" Margin="5 0 0 0" Padding="0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <TextBlock Text="App for CBYUK" Foreground="Gray" VerticalAlignment="Center" FontSize="16" FontFamily="Mangal" Margin="10 0"/>
                     <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Padding="0">
@@ -44,49 +53,56 @@
             </Grid>
         </StackPanel>
 
-        <Grid  Margin="250 50 0 0">
-            <Grid  x:Name="GridPrincipal"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
-        <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
-            <materialDesign:TransitioningContent x:Name="TransitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                <Grid x:Name="GridCursor" Margin="0 70 0 0" Background="#FF0069C0" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
-            </materialDesign:TransitioningContent>
-            <ListView x:Name="ListViewMenu" Margin="0 70" Foreground="LightGray" FontFamily="Mangal" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
-                <ListViewItem Height="60" >
-                    <StackPanel Orientation="Horizontal" >
-                        <materialDesign:PackIcon Kind="InformationVariant" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
-                        <TextBlock Text="Info" VerticalAlignment="Center" FontSize="22" Margin="20 0" />
-                    </StackPanel>
-                </ListViewItem>
+        <Grid  Margin="0 70 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TabControl Grid.ColumnSpan="2">
+                <TabItem Header="Repository">
+                    <StackPanel>
+                        <Grid Margin="5" >
+                            <StackPanel Orientation="Horizontal"  Height="50" >
+                                <Button  Background="#FF0069C0" Margin="10" Width="100" Height="30" Padding="0" BorderBrush="Transparent">
+                                    <StackPanel Orientation="Horizontal" Height="20" Margin="0 0 0 0" Width="75" >
+                                        <TextBlock Text="Создать" />
+                                        <materialDesign:PackIcon Kind="CodeTags" Margin="5 0 0 0" Padding="0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button  Background="#FF0069C0" Margin="10" Width="110" Height="30" Padding="0" BorderBrush="Transparent" >
+                                    <StackPanel Orientation="Horizontal" Height="20"  Width="90" HorizontalAlignment="Center" >
+                                        <TextBlock Text="Добавить" />
+                                        <materialDesign:PackIcon Kind="Add" Margin="5,2,0,2" Padding="0" VerticalAlignment="Center" Width="15"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button  Background="#FF0069C0" Margin="10" Width="100" Height="30" Padding="0" BorderBrush="Transparent">
+                                    <StackPanel Orientation="Horizontal" Height="20" Margin="0 0 0 0" Width="75" >
+                                        <TextBlock Text="Скачать" />
+                                        <materialDesign:PackIcon Kind="Download" Margin="5 0 0 0" Padding="0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
 
-                <ListViewItem Height="60" >
-                    <StackPanel Orientation="Horizontal" >
-                        <materialDesign:PackIcon Kind="People" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Employees" VerticalAlignment="Center" FontSize="22" Margin="20 0" />
-                    </StackPanel>
-                </ListViewItem>
+                        <StackPanel>
+                            <DataGrid Name="DataGridRepository" ItemsSource="{Binding}"  VerticalAlignment="Top" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name"  Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                                    <DataGridTextColumn Header="Content"  Binding="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
 
-                <ListViewItem Height="60" >
-                    <StackPanel Orientation="Horizontal" >
-                        <materialDesign:PackIcon Kind="Contact" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Contracts" VerticalAlignment="Center" FontSize="22" Margin="20 0" />
-                    </StackPanel>
-                </ListViewItem>
 
-                <ListViewItem Height="60" >
-                    <StackPanel Orientation="Horizontal" >
-                        <materialDesign:PackIcon Kind="Paper" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Securities" VerticalAlignment="Center" FontSize="22" Margin="20 0" />
-                    </StackPanel>
-                </ListViewItem>
 
-                <ListViewItem Height="60" >
-                    <StackPanel Orientation="Horizontal" >
-                        <materialDesign:PackIcon Kind="Hand" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Deals" VerticalAlignment="Center" FontSize="22" Margin="20 0" />
+
+
                     </StackPanel>
-                </ListViewItem>
-            </ListView>
+
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>

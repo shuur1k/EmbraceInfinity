@@ -20,5 +20,9 @@ namespace EmbraceInfinity
         public string Email { get; set; }
         public string Location { get; set; }
         public int TotalID { get; set; }
+        public string Surname { get; set; }
+        public string Name { get; set; }
+        public string Patronumic { get; set; }
+        public string Telephone { get; set; }
     }
 }

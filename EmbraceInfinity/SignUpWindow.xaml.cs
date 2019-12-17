@@ -32,12 +32,12 @@ namespace EmbraceInfinity
             Regex regexPass = new Regex("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}");
             Regex regexEmail = new Regex("/@/");
 
-            if (regexPass.IsMatch(TextBoxPasswordReg.Password))
-            {
-                LabelAnswer.Content = "Лёгкий пароль, Пример:Fg78Td62";
-            }
+            //if (regexPass.IsMatch(TextBoxPasswordReg.Password))
+            //{
+            //    LabelAnswer.Content = "Лёгкий пароль, Пример:Fg78Td62";
+            //}
 
-            else if (regexEmail.IsMatch(TextBoxEmailReg.Text))
+            if (regexEmail.IsMatch(TextBoxEmailReg.Text))
             {
                 LabelAnswer.Content = "Не паравильно введена почта";
             }
@@ -50,15 +50,17 @@ namespace EmbraceInfinity
             else if (TextBoxPasswordReg.Password == TextBoxConfirmPassword.Password)
             {
                 User user = new User();
+                user.Surname = TextBoxSurnameReg.Text;
+                user.Name = TextBoxNameReg.Text;
+                user.Patronumic = TextBoxPatronumicReg.Text;
+                user.Telephone = TextBoxPhoneReg.Text;
                 user.Login = TextBoxLiginReg.Text;
                 user.Password = TextBoxPasswordReg.Password;
                 user.Email = TextBoxEmailReg.Text;
                 user.TotalID = 3;
                 dataEntities.User.Add(user);
                 dataEntities.SaveChanges();
-                var users = dataEntities.User;
-                var query = from User in users
-                            select User;
+               
 
                 WindowUser windowUser = new WindowUser();
                 windowUser.Show();

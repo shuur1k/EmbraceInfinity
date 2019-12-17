@@ -77,6 +77,9 @@
     <Compile Include="Order.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository.cs">
+      <DependentUpon>TitleEmployee.tt</DependentUpon>
+    </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -84,9 +87,6 @@
       <DependentUpon>TitleEmployee.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>TitleEmployee.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
     </Compile>
     <Compile Include="Title.cs">
@@ -109,6 +109,9 @@
     </Compile>
     <Compile Include="User.cs">
       <DependentUpon>TitleEmployee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WindowAccount.xaml.cs">
+      <DependentUpon>WindowAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsUser.xaml.cs">
       <DependentUpon>WindowsUser.xaml</DependentUpon>
@@ -139,6 +142,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
