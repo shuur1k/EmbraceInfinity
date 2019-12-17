@@ -12,13 +12,13 @@
             <Label Content="Личный кабинет" Foreground="#FFF3F3F3" FontSize="30" HorizontalAlignment="Center" Margin="12"/>
             <StackPanel Margin="50">
                 <Border Background="White" Margin="10 20" CornerRadius="5">
-                    <StackPanel Margin="25" Name="panelDate" DataContext="{Binding}" >
-                        <TextBox Name="TextBoxSurnameReg" Margin="15" Text="{Binding Path=Surname}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Surname" />
-                        <TextBox Name="TextBoxNameReg" Margin="15" Text="{Binding Path=Name}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" />
-                        <TextBox Name="TextBoxPatronumicReg" Margin="15" Text="{Binding Patronumic}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Patronumic" />
-                        <TextBox Name="TextBoxPhoneReg" Margin="15" Text="{Binding Telephone}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Phone" />
-                        <TextBox Name="TextBoxEmailReg" Margin="15" Text="{Binding Email}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email"/>
-                        <TextBox Name="TextBoxLiginReg" Margin="15" Text="{Binding Login}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Login"/>
+                    <StackPanel Margin="25" Name="panelDate" DataContext="{Binding Text}" >
+                        <TextBox Name="TextBoxSurnameReg" Text="Давыдов" Margin="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Surname" />
+                        <TextBox Name="TextBoxNameReg" Text="Александр" Margin="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Name" />
+                        <TextBox Name="TextBoxPatronumicReg" Margin="15" Text="Викторович" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Patronumic" />
+                        <TextBox Name="TextBoxPhoneReg" Margin="15" Text="+79635518382" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Phone" />
+                        <TextBox Name="TextBoxEmailReg" Margin="15" Text="Shuur1k@mail.ru" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email"/>
+                        <TextBox Name="TextBoxLiginReg" Margin="15" Text="Shuur1k" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Login"/>
                        
                         <StackPanel>
                             <Label Name="LabelAnswer" Height="20"  FontSize="14" Padding="0" Foreground="#FF9E4242" HorizontalAlignment="Center" />
